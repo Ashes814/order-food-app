@@ -21,9 +21,10 @@ export default function Cart() {
    setShowDetails(false);
  }
  error:Too Many re-renders
+ console.log("re render !!!");
+
   */
 
-  console.log("re render !!!");
   // 添加一个显示详情页的函数
   const toggleDetailsHandler = () => {
     // debugger;
