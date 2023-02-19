@@ -13,6 +13,17 @@ export default function Cart() {
   // 添加一个state设置结账页的显示与隐藏
   const [showCheckout, setShowCheckout] = useState(false);
 
+  // 在组件每次重新渲染的时候,检查一下商品的总数量,如果数量为0,则修改showDetails为false
+  // 组件每次重新渲染,组件的函数体就会执行
+
+  /* if (ctx.totalAmount === 0) {
+   // 购物车已经被清空
+   setShowDetails(false);
+ }
+ error:Too Many re-renders
+  */
+
+  console.log("re render !!!");
   // 添加一个显示详情页的函数
   const toggleDetailsHandler = () => {
     // debugger;

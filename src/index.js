@@ -8,4 +8,8 @@ document.documentElement.style.fontSize = 100 / 750 + "vw";
 
 // 将App组件在root下渲染
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
