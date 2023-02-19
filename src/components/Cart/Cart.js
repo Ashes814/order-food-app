@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import classes from "./Cart.module.css";
 import IconImg from "../../asset/bag.png";
 import CartContext from "../../store/cart-context";
@@ -13,6 +13,16 @@ export default function Cart() {
   // 添加一个state设置结账页的显示与隐藏
   const [showCheckout, setShowCheckout] = useState(false);
 
+  // 单独执行以下代码会造成死循环re-render
+  const checkAmount = () => {
+    if (ctx.totalAmount === 0) {
+      // 购物车已经被清空
+      setShowDetails(false);
+      setShowCheckout(false);
+    }
+  };
+  useEffect(checkAmount);
+
   // 在组件每次重新渲染的时候,检查一下商品的总数量,如果数量为0,则修改showDetails为false
   // 组件每次重新渲染,组件的函数体就会执行
 
@@ -24,6 +34,13 @@ export default function Cart() {
  console.log("re render !!!");
 
   */
+
+  // if (ctx.totalAmount === 0) {
+  //   setTimeout(() => {
+  //     setShowDetails(false);
+  //   }, 0);
+  // 成功解决
+  // }
 
   // 添加一个显示详情页的函数
   const toggleDetailsHandler = () => {
