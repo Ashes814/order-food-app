@@ -21,6 +21,18 @@ export default function Cart() {
       setShowCheckout(false);
     }
   };
+  /* 默认情况下useEffect中的函数,会在组件渲染完成后调用,并且是每次渲染完成后都会调用
+      - 在useEffect中,可以传递第二个参数
+          此参数为数组,可指定Effect的依赖项
+          仅当依赖变化时Effect才会被触发
+          通常将Effect中使用的所有的局部变量都设置为其依赖项
+            此操作可确保这些变量发生变化时,Effect会被触发执行
+          像setState是由钩子函数useState()生成的,useState会确保组件的每次渲染都会获取到相同的setState对象
+            所以如setState之类的可以不设置到依赖中
+          如果依赖项:设置为空数组
+            意味着Effect只会在组件初始化时出发一次
+  */
+
   useEffect(checkAmount);
 
   // 在组件每次重新渲染的时候,检查一下商品的总数量,如果数量为0,则修改showDetails为false
