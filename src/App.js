@@ -57,6 +57,7 @@ const MEALS_DATA = [
   },
 ];
 
+// 通过Reducer将各种购物车相关操作方法整合起来
 const cartReducer = (state, action) => {
   //复制购物车
   const newCart = { ...state };
@@ -64,6 +65,7 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     default:
       return state;
+    //向购物车中添加商品
     case "ADD":
       if (newCart.items.indexOf(action.meal) === -1) {
         newCart.items.push(action.meal);
@@ -81,12 +83,13 @@ const cartReducer = (state, action) => {
 
       // 重新设置购物车
       return newCart;
-
+    //向购物车中减少商品
     case "REMOVE":
       // change amount
       action.meal.amount -= 1;
 
       if (action.meal.amount === 0) {
+        //通过索引值删除指定购物车元素
         newCart.items.splice(newCart.items.indexOf(action.meal), 1);
       }
 
@@ -95,7 +98,7 @@ const cartReducer = (state, action) => {
       newCart.totalPrice -= action.meal.price;
       // 重新设置购物车
       return newCart;
-
+    //清空购物车
     case "CLEAR":
       newCart.items.forEach((item) => delete item.amount);
       newCart.items = [];
