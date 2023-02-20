@@ -30,7 +30,7 @@ const CartDetails = (props) => {
   };
   const okHandler = (e) => {
     // 清空购物车
-    ctx.clearCart();
+    ctx.cartDispatch({ type: "CLEAR" });
 
     // 将showDetails设置为false，否则下次单击+会弹出cartDetails
     props.setShowDetails(false);

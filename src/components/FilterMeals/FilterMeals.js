@@ -8,9 +8,14 @@ export default function FilterMeals(props) {
 
   // 通过Effect来改造联系
   useEffect(() => {
-    const Timer = setTimeout(() => props.onFilter(keyword), 1000);
+    const Timer = setTimeout(() => {
+      console.log(99);
+      props.onFilter(keyword);
+    }, 1000);
 
-    return clearTimeout(Timer);
+    return () => {
+      clearTimeout(Timer);
+    };
   }, [keyword]);
 
   // 需要降低数据过滤的次数,提高用户体验,用户输入完之后再过滤
